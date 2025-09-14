@@ -21,6 +21,7 @@ It helps students stay organized with timetables, notes, announcements, and exam
 - **Authentication & Database (Planned):** Firebase  
 
 ---
+owned by shivam jha
 
 ## 📂 Project Structure
 Lyma/
