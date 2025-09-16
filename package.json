@@ -1,0 +1,29 @@
+{
+  "name": "lyma",
+  "version": "1.0.0",
+  "description": "Lyma is a web application designed to simplify college life.  \r It helps students stay organized with timetables, notes, announcements, and exam reminders – all in one place.",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "live-server dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shivamjha76/Lyma.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shivamjha76/Lyma/issues"
+  },
+  "homepage": "https://github.com/shivamjha76/Lyma#readme",
+  "dependencies": {
+    "firebase": "^12.2.1"
+  },
+  "devDependencies": {
+    "live-server": "^1.2.2",
+    "webpack": "^5.101.3",
+    "webpack-cli": "^6.0.1"
+  }
+}
