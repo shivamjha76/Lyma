@@ -4,17 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lyma | Homepage</title>
-  <link rel="icon" type="image/png" href="favicon.png">
-  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" type="image/png" href="/Lyma/dist/images/favicon.png">
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/Lyma/dist/css/style.css">
 </head>
 <body>
   <!-- Navbar -->
   <header>
     <nav class="nav">
-      <div class="nav-logo">
-        <p>LYMA</p>
-      </div>
+      <div class="nav-logo"><p>LYMA</p></div>
       <div class="nav-menu" id="navMenu">
         <ul>
           <li><a href="#" class="link active">Home</a></li>
@@ -49,15 +47,15 @@
           <header>Login</header>
         </div>
         <div class="input-box">
-          <input type="text" class="input-field" placeholder="Username or Email">
+          <input type="email" class="input-field" id="loginEmail" placeholder="Email">
           <i class="bx bx-user"></i>
         </div>
         <div class="input-box">
-          <input type="password" class="input-field" placeholder="Password">
+          <input type="password" class="input-field" id="loginPassword" placeholder="Password">
           <i class="bx bx-lock-alt"></i>
         </div>
         <div class="input-box">
-          <input type="submit" class="submit" value="Sign in">
+          <button type="button" id="loginSubmit" class="submit">Sign In</button>
         </div>
         <div class="two-col">
           <div class="one">
@@ -65,7 +63,7 @@
             <label for="login-check">Remember Me</label>
           </div>
           <div class="two">
-            <label><a href="#">Forget password?</a></label>
+            <label><a href="#" id="forgotPassword">Forget password?</a></label>
           </div>
         </div>
       </div>
@@ -78,24 +76,24 @@
         </div>
         <div class="two-forms">
           <div class="input-box">
-            <input type="text" class="input-field" placeholder="Firstname">
+            <input type="text" class="input-field" id="firstName" placeholder="Firstname">
             <i class="bx bx-user"></i>
           </div>
           <div class="input-box">
-            <input type="text" class="input-field" placeholder="Lastname">
+            <input type="text" class="input-field" id="lastName" placeholder="Lastname">
             <i class="bx bx-user"></i>
           </div>
         </div>
         <div class="input-box">
-          <input type="text" class="input-field" placeholder="Email">
+          <input type="email" class="input-field" id="registerEmail" placeholder="Email">
           <i class="bx bx-envelope"></i>
         </div>
         <div class="input-box">
-          <input type="password" class="input-field" placeholder="Password">
+          <input type="password" class="input-field" id="registerPassword" placeholder="Password">
           <i class="bx bx-lock-alt"></i>
         </div>
         <div class="input-box">
-          <input type="submit" class="submit" value="Register">
+          <button type="button" id="registerSubmit" class="submit">Register</button>
         </div>
         <div class="two-col">
           <div class="one">
@@ -112,10 +110,11 @@
 
   <!-- Footer -->
   <footer>
-    <p class="love">Made with ❤️ by Shivam & Priyanshu| © 2025 Lyma</p>
+    <p class="love">Made with ❤️ by Shivam & Priyanshu | © 2025 Lyma</p>
   </footer>
 
   <!-- External JS -->
-  <script src="bundle.js"></script>
+  <script type="module" src="/Lyma/dist/js/index.js"></script>
+  <script src="/Lyma/dist/js/bundle.js"></script>
 </body>
 </html>

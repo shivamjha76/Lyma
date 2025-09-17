@@ -190,7 +190,12 @@ header {
   color: #9a3f3f;
 }
 
-.submit {
+button .submit {
+  all: unset; /* purane browser default style ko hata dega */
+  display: inline-block;
+}
+
+input.submit, .submit {
   font-size: 15px;
   font-weight: 500;
   color: white;
@@ -202,6 +207,7 @@ header {
   background: #9a3f3f;
   cursor: pointer;
   transition: .3s ease-in-out;
+  text-align: center;
 }
 
 .submit:hover {
