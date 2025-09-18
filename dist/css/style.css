@@ -110,9 +110,11 @@ body {
 .form-box {
   position: relative;
   width: 512px;
-  height: 420px;
-  overflow: hidden;
+  min-height: 540px;
+  height: auto;
+  overflow: visible;
   z-index: 2;
+  padding-bottom: 20px;
 }
 
 /* Forms smooth slide */
@@ -159,6 +161,12 @@ header {
 .two-forms {
   display: flex;
   gap: 10px;
+  align-items: flex-start;
+}
+
+.register-container .two-forms .input-box {
+  flex: 1;
+  margin-bottom: 0;
 }
 
 .input-field {
@@ -183,16 +191,49 @@ header {
   color: #555;
 }
 
-.input-box i {
+.input-box {
   position: relative;
-  top: -35px;
-  left: 17px;
-  color: #9a3f3f;
+  display: flex;
+  align-items: center;
+  margin-bottom: 24px;
 }
 
-button .submit {
-  all: unset; /* purane browser default style ko hata dega */
-  display: inline-block;
+.register-container .input-box,
+.login-container .input-box {
+  margin-bottom: 24px;
+}
+
+.input-box:last-child {
+  margin-bottom: 0;
+}
+
+.input-box .input-field {
+  width: 100%;
+  padding-left: 45px;
+}
+
+.input-box i.password-toggle {
+  position: absolute;
+  right: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #9a3f3f;
+  transition: color 0.2s;
+  font-size: 20px;
+}
+
+.input-box i.password-toggle:hover {
+  color: #c1856d;
+}
+
+.input-box i:not(.password-toggle) {
+  position: absolute;
+  left: 17px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #9a3f3f;
+  font-size: 20px;
 }
 
 input.submit, .submit {
@@ -300,21 +341,53 @@ footer {
 @media only screen and (max-width: 540px) {
   .wrapper {
     min-height: 100vh;
+    padding: 10px 0;
   }
-
   .form-box {
     width: 100%;
-    height: 500px;
+    min-height: 600px;
+    height: auto;
+    padding: 16px 0;
   }
-
   .register-container,
   .login-container {
     width: 100%;
-    padding: 0 20px;
+    padding: 0 8px;
+    position: static;
+    min-width: 0;
   }
-
   .register-container .two-forms {
     flex-direction: column;
     gap: 0;
   }
+  .input-box {
+    margin-bottom: 18px;
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .input-box .input-field {
+    padding-left: 45px;
+    font-size: 16px;
+    height: 48px;
+  }
+  .input-box i {
+    left: 17px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 18px;
+  }
+  .input-box i.password-toggle {
+    right: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 18px;
+  }
+  .submit {
+    font-size: 16px;
+    height: 48px;
+  }
+}
+
+.register-container .input-box#registerEmailBox {
+  margin-top: 18px;
 }

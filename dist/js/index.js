@@ -1,6 +1,6 @@
 // ---------------- Firebase SDK Imports ----------------
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } 
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, sendPasswordResetEmail, sendEmailVerification } 
   from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-analytics.js";
 
@@ -67,20 +67,57 @@ window.addEventListener("DOMContentLoaded", () => {
   // -----------------------------------------------------------------------------------------------------------//
   // 🔐 SIGN UP
   const registerBtnSubmit = document.getElementById("registerSubmit");
+  const registerPasswordInput = document.getElementById("registerPassword");
+  const registerConfirmPasswordInput = document.getElementById("registerConfirmPassword");
+
   if (registerBtnSubmit) {
     registerBtnSubmit.addEventListener("click", async () => {
       const email = document.getElementById("registerEmail").value;
       const password = document.getElementById("registerPassword").value;
-
+      const confirmPassword = document.getElementById("registerConfirmPassword").value;
+      if (password !== confirmPassword) {
+        alert("Passwords do not match. Please confirm your password correctly.");
+        return;
+      }
       try {
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-        console.log("✅ User Registered:", userCredential.user);
-        alert("Registration Successful 🎉");
-        window.location.href = "/lyma/dist/html/dashboard.html";
-
+        await sendEmailVerification(userCredential.user);
+        alert("Verification email sent! Please check your inbox and verify your email before logging in.");
       } catch (error) {
         console.error("❌ Registration Error:", error.message);
         alert(error.message);
+      }
+    });
+    // ✅ Enter key triggers registration
+    if (registerPasswordInput) {
+      registerPasswordInput.addEventListener("keydown", function(e) {
+        if (e.key === "Enter") {
+          registerBtnSubmit.click();
+        }
+      });
+    }
+    if (registerConfirmPasswordInput) {
+      registerConfirmPasswordInput.addEventListener("keydown", function(e) {
+        if (e.key === "Enter") {
+          registerBtnSubmit.click();
+        }
+      });
+    }
+  }
+
+  // ✅ Password show/hide toggle for register confirm password
+  const registerConfirmPasswordIcon = registerConfirmPasswordInput?.nextElementSibling;
+  if (registerConfirmPasswordInput && registerConfirmPasswordIcon) {
+    registerConfirmPasswordIcon.style.cursor = "pointer";
+    registerConfirmPasswordIcon.addEventListener("click", function() {
+      if (registerConfirmPasswordInput.type === "password") {
+        registerConfirmPasswordInput.type = "text";
+        registerConfirmPasswordIcon.classList.remove("bx-lock-alt");
+        registerConfirmPasswordIcon.classList.add("bx-show");
+      } else {
+        registerConfirmPasswordInput.type = "password";
+        registerConfirmPasswordIcon.classList.remove("bx-show");
+        registerConfirmPasswordIcon.classList.add("bx-lock-alt");
       }
     });
   }
@@ -88,19 +125,91 @@ window.addEventListener("DOMContentLoaded", () => {
   // -----------------------------------------------------------------------------------------------------------//
   // 🔓 LOGIN
   const loginBtnSubmit = document.getElementById("loginSubmit");
+  const loginPasswordInput = document.getElementById("loginPassword");
   if (loginBtnSubmit) {
     loginBtnSubmit.addEventListener("click", async () => {
       const email = document.getElementById("loginEmail").value;
       const password = document.getElementById("loginPassword").value;
-
+      // ✅ Remember Me: Save or remove email
+      const rememberMeChecked = document.getElementById("login-check")?.checked;
+      if (rememberMeChecked) {
+        localStorage.setItem("lymaRememberEmail", email);
+      } else {
+        localStorage.removeItem("lymaRememberEmail");
+      }
       try {
         const userCredential = await signInWithEmailAndPassword(auth, email, password);
+        if (!userCredential.user.emailVerified) {
+          alert("Please verify your email before logging in.");
+          return;
+        }
         console.log("✅ User Logged In:", userCredential.user);
         alert("Login Successful 🎉");
         window.location.href = "/lyma/dist/html/dashboard.html";
       } catch (error) {
         console.error("❌ Login Error:", error.message);
         alert(error.message);
+      }
+    });
+    // ✅ Enter key triggers login
+    if (loginPasswordInput) {
+      loginPasswordInput.addEventListener("keydown", function(e) {
+        if (e.key === "Enter") {
+          loginBtnSubmit.click();
+        }
+      });
+    }
+  }
+
+  // ✅ Forget Password functionality
+  const forgotPasswordLink = document.getElementById("forgotPassword");
+  if (forgotPasswordLink) {
+    forgotPasswordLink.addEventListener("click", async (e) => {
+      e.preventDefault();
+      const email = document.getElementById("loginEmail").value;
+      if (!email) {
+        alert("Please enter your email address above to reset password.");
+        return;
+      }
+      try {
+        await sendPasswordResetEmail(auth, email);
+        alert("Password reset email sent! Check your inbox.");
+      } catch (error) {
+        alert("Error: " + error.message);
+      }
+    });
+  }
+
+  // ✅ Password show/hide toggle for login
+  const loginPasswordIcon = loginPasswordInput?.nextElementSibling;
+  if (loginPasswordInput && loginPasswordIcon) {
+    loginPasswordIcon.style.cursor = "pointer";
+    loginPasswordIcon.addEventListener("click", function() {
+      if (loginPasswordInput.type === "password") {
+        loginPasswordInput.type = "text";
+        loginPasswordIcon.classList.remove("bx-lock-alt");
+        loginPasswordIcon.classList.add("bx-show");
+      } else {
+        loginPasswordInput.type = "password";
+        loginPasswordIcon.classList.remove("bx-show");
+        loginPasswordIcon.classList.add("bx-lock-alt");
+      }
+    });
+  }
+
+  // ✅ Password show/hide toggle for register
+  const registerPasswordIcon = registerPasswordInput?.nextElementSibling;
+  if (registerPasswordInput && registerPasswordIcon) {
+    registerPasswordIcon.style.cursor = "pointer";
+    registerPasswordIcon.addEventListener("click", function() {
+      if (registerPasswordInput.type === "password") {
+        registerPasswordInput.type = "text";
+        registerPasswordIcon.classList.remove("bx-lock-alt");
+        registerPasswordIcon.classList.add("bx-show");
+      } else {
+        registerPasswordInput.type = "password";
+        registerPasswordIcon.classList.remove("bx-show");
+        registerPasswordIcon.classList.add("bx-lock-alt");
       }
     });
   }
