@@ -1,17 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lyma | Dashboard</title>
-  <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>LYMA Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/Lyma.priyanshu/Lyma/dist/css/dashboard.css"/>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-<body style="text-align: center; margin-top: 100px; font-family: Poppins, sans-serif;">
+<body>
+  <!-- Main Content -->
+  <main class="main-content">
+    <!-- Header Bar -->
+    <div class="header-bar">
+      <div class="header-title">LYMA</div>
+      <div class="header-actions">
+        <!-- Moved menu here -->
+        <nav class="menu horizontal-menu">
+          <a href="#" class="menu-item active">Home</a>
+          <a href="#" class="menu-item">⏰ Timetable</a>
+          <a href="#" class="menu-item">📒 Notes</a>
+          <a href="#" class="menu-item">📢 Announcements</a>
+          <a href="#" class="menu-item">📅 Events</a>
+        </nav>
+        
+        <button class="toggle-theme">🌙 Dark Mode</button>
+        <button class="logout-btn">Logout</button>
+      </div>
+    </div>
 
-  <h1>Welcome to Lyma 🎉</h1>
-  <h2>Dashboard is under construction 🛠️</h2>
+    <!-- Cards section -->
+    <section class="cards">
+      <div class="card light">
+        <span class="icon">⏰</span>
+        <h2>Timetable</h2>
+        <p>View & Manage</p>
+      </div>
+      <div class="card medium">
+        <span class="icon">📒</span>
+        <h2>Notes</h2>
+        <p>Create & Organize</p>
+      </div>
+      <div class="card dark">
+        <span class="icon">📢</span>
+        <h2>Announcements</h2>
+        <p>Stay Updated</p>
+      </div>
+      <div class="card light">
+        <span class="icon">📅</span>
+        <h2>Events</h2>
+        <p>Discover & Join</p>
+      </div>
+      <!-- Additional Attendance card -->
+      <div class="card medium">
+        <span class="icon">📝</span>
+        <h2>Attendance</h2>
+        <p>Track your attendance</p>
+      </div>
+      <!-- Additional Library card -->
+      <div class="card dark">
+        <span class="icon">📚</span>
+        <h2>Library</h2>
+        <p>Access resources</p>
+      </div>
+    </section>
 
-  <p style="margin-top: 30px;">Stay tuned, more features coming soon!</p>
+    <!-- Notifications -->
+    <section class="notifications">
+      <h2>Latest Announcements</h2>
+      <ul>
+        <li>📢 Tomorrow's class rescheduled to 11 AM.</li>
+        <li>📢 New notes uploaded for Physics Chapter 5.</li>
+        <li>📢 Event: Tech Fest registrations open now!</li>
+      </ul>
+    </section>
+  </main>
 
+  <footer class="footer">
+    <div class="footer-content">
+      &copy; 2024 LYMA. All rights reserved.
+    </div>
+  </footer>
+
+  <script src="/Lyma.priyanshu/Lyma/dist/js/dashboard.js"></script>
 </body>
 </html>
