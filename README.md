@@ -5,6 +5,7 @@ It helps students stay organized with timetables, notes, announcements, and exam
 
 ---
 
+
 ## 🚀 Features
 - 📅 **Timetable Management** – View your daily class schedule easily  
 - 📚 **Notes Section** – Upload and access study materials anytime  
