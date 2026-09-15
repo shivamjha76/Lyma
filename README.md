@@ -23,6 +23,7 @@ It helps students stay organized with timetables, notes, announcements, and exam
 ---
 owned by shivam jha
 
+
 ## 📂 Project Structure
 Lyma/
 │── index.html # Homepage with login/signup
